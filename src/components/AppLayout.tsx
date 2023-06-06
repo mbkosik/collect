@@ -1,5 +1,5 @@
 import { AppShell, Navbar, Header, Title, Container } from '@mantine/core';
-import { ReactFCWithChildren } from '../react';
+import type { ReactFCWithChildren } from '@/react.d.ts';
 
 export const AppLayout: ReactFCWithChildren = ({ children }) => {
 	return (
