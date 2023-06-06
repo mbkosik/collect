@@ -1,13 +1,22 @@
-import { AppShell, Navbar, Header, Title, Container } from '@mantine/core';
+import {
+  AppShell,
+  Navbar,
+  Header,
+  Title,
+  Container,
+  Text,
+} from '@mantine/core';
 import type { ReactFCWithChildren } from '@/react.d.ts';
+import packages from '@/../package.json';
 
 export const AppLayout: ReactFCWithChildren = ({ children }) => {
+  const { version } = packages;
   return (
     <AppShell
       padding="md"
       navbar={
         <Navbar width={{ base: 300 }} height="100vh" p="xs">
-          {/* Navbar content */}
+          <Text>{version}</Text>
         </Navbar>
       }
       header={
