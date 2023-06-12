@@ -2,20 +2,25 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Login } from './pages/Login';
 import { Collect } from './pages/Collect';
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <Login />,
+    },
+    {
+      path: '/home',
+      element: <Collect />,
+    },
+    // TODO: prepare NotFoundPage
+    {
+      path: '*',
+      element: <div>Not found</div>,
+    },
+  ],
   {
-    path: '/',
-    element: <Login />,
+    basename: '/collect',
   },
-  {
-    path: '/collect',
-    element: <Collect />,
-  },
-  // TODO: prepare NotFoundPage
-  {
-    path: '*',
-    element: <div>Not found</div>,
-  },
-]);
+);
 
 export const App = () => <RouterProvider router={router} />;
