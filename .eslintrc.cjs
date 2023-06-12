@@ -8,11 +8,26 @@ module.exports = {
     'plugin:react-hooks/recommended',
   ],
   parser: '@typescript-eslint/parser',
-  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-  plugins: ['react', 'react-hooks', 'react-refresh', 'prettier', 'import'],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    tsconfigRootDir: __dirname,
+    project: './tsconfig.json',
+  },
+  plugins: [
+    'react',
+    'react-hooks',
+    'react-refresh',
+    'prettier',
+    'import',
+    '@typescript-eslint',
+  ],
   rules: {
     'react-refresh/only-export-components': 'warn',
     'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+    'react/react-in-jsx-scope': 'off',
     'import/prefer-default-export': 'off',
+    "import/extensions": "off",
   },
-}
+  root: true,
+};
