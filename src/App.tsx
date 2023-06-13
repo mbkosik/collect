@@ -19,7 +19,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: '/collect',
+    basename: import.meta.env.VITE_BASE_URL,
   },
 );
 
