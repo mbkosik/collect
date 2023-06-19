@@ -34,9 +34,9 @@ export const Login = () => {
         },
       });
     },
-    onError: err => {
-      // TODO: display error notification;
-    },
+    // onError: err => {
+    //   // TODO: display error notification;
+    // },
   });
 
   const submitForm = form.onSubmit(values => handleLogin.mutate(values));
