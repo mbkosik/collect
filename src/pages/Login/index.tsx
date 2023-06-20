@@ -61,7 +61,6 @@ export const Login = () => {
 
   const submitForm = form.onSubmit(values => handleLogin.mutate(values));
 
-  // TODO: logout button in sidebar menu
   return (
     <Container
       h="100%"
