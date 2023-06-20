@@ -1,7 +1,16 @@
-import { Button, TextInput, PasswordInput } from '@mantine/core';
+import {
+  Button,
+  TextInput,
+  PasswordInput,
+  Container,
+  Stack,
+  Title,
+} from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { IconLock, IconMail } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
+import isEmail from 'validator/lib/isEmail';
 import { useAuth } from '@/store/auth-store';
 import { login, ILoginData } from '@/services/auth';
 
@@ -16,12 +25,10 @@ export const Login = () => {
     },
 
     validate: {
-      // TODO: use validator lib to test email value
-      email: value => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      email: value => (isEmail(value) ? null : 'Invalid email'),
     },
   });
 
-  // TODO: do you need to pass a data prop, maybe i can use form.values state?
   const handleLogin = useMutation((data: ILoginData) => login(data), {
     onSuccess: res => {
       navigate('/home');
@@ -42,23 +49,39 @@ export const Login = () => {
   const submitForm = form.onSubmit(values => handleLogin.mutate(values));
 
   // TODO: logout button in sidebar menu
-  // TODO: add style for Login Page
   return (
-    <form onSubmit={submitForm}>
-      {/* TODO: check TextInput and PasswordInput docs for what you can use here */}
-      <TextInput
-        withAsterisk
-        label="Email"
-        placeholder="your@email.com"
-        {...form.getInputProps('email')}
-      />
-      <PasswordInput
-        withAsterisk
-        label="Password"
-        placeholder="****"
-        {...form.getInputProps('password')}
-      />
-      <Button type="submit">Login</Button>
-    </form>
+    <Container
+      h="100%"
+      size="sm"
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }}>
+      <Title order={1} align="center">
+        Collect
+      </Title>
+      <form onSubmit={submitForm}>
+        <Stack spacing="sm" justify="center">
+          <TextInput
+            withAsterisk
+            label="Email"
+            placeholder="your@email.com"
+            icon={<IconMail />}
+            {...form.getInputProps('email')}
+          />
+          <PasswordInput
+            withAsterisk
+            label="Password"
+            placeholder="****"
+            icon={<IconLock />}
+            {...form.getInputProps('password')}
+          />
+          <Button mt="md" w="40%" m="0 auto" type="submit">
+            Login
+          </Button>
+        </Stack>
+      </form>
+    </Container>
   );
 };

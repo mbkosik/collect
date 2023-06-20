@@ -4,7 +4,7 @@ import { MantineProvider } from '@mantine/core';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { AuthProvider } from '@/store/auth-store';
 import { App } from './App';
-import '@/index.css';
+import { Theme } from '@/config/Theme';
 
 const queryClient = new QueryClient();
 
@@ -12,8 +12,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        {/* TODO: theme prop in MantineProvider */}
-        <MantineProvider>
+        <MantineProvider withGlobalStyles withNormalizeCSS theme={Theme}>
           <App />
         </MantineProvider>
       </AuthProvider>
