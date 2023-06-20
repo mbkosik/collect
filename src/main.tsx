@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { AuthProvider } from '@/store/auth-store';
 import { App } from './App';
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <MantineProvider withGlobalStyles withNormalizeCSS theme={Theme}>
+          <Notifications />
           <App />
         </MantineProvider>
       </AuthProvider>
@@ -22,5 +24,4 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 
 // TODO:
 // - i18n
-// - mantine notifications
 // - darkmode

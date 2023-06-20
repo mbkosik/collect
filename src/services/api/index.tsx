@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { notifications } from '@mantine/notifications';
+import { IconExclamationCircle } from '@tabler/icons-react';
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -7,8 +9,17 @@ const api = axios.create({
 
 api.interceptors.response.use(
   response => response,
-  // TODO: error handling
-  error => console.log(error),
+  error => {
+    // TODO: display message from error object in notification
+    console.log(error);
+    notifications.show({
+      title: 'Error!',
+      message: 'Something went wrong',
+      withCloseButton: true,
+      color: 'red',
+      icon: <IconExclamationCircle />,
+    });
+  },
 );
 
 export const getData = () => api.get('/object.json');

@@ -7,7 +7,12 @@ import {
   Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { IconLock, IconMail } from '@tabler/icons-react';
+import {
+  IconExclamationCircle,
+  IconLock,
+  IconMail,
+} from '@tabler/icons-react';
+import { notifications } from '@mantine/notifications';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import isEmail from 'validator/lib/isEmail';
@@ -41,9 +46,17 @@ export const Login = () => {
         },
       });
     },
-    // onError: err => {
-    //   // TODO: display error notification;
-    // },
+    onError: err => {
+      // TODO: display message from error object in notification
+      console.log(err);
+      notifications.show({
+        title: 'Error!',
+        message: 'Something went wrong',
+        withCloseButton: true,
+        color: 'red',
+        icon: <IconExclamationCircle />,
+      });
+    },
   });
 
   const submitForm = form.onSubmit(values => handleLogin.mutate(values));
